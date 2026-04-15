@@ -1,776 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Castle & Cubs | Kids Learning & Montessori-Inspired Education</title>
-  <meta name="description" content="Castle & Cubs shares fun, simple, and Montessori-inspired educational content for kids, parents, teachers, and caregivers through engaging videos and practical learning ideas." />
-  <style>
-    :root {
-      --bg: #fffdf8;
-      --surface: #ffffff;
-      --text: #24324a;
-      --muted: #5f6f85;
-      --line: #e9e4d8;
-      --brand: #5b7cfa;
-      --brand-dark: #3f5bd9;
-      --accent: #fff1c7;
-      --accent-soft: #eef4ff;
-      --mint: #e8f8ef;
-      --peach: #ffe5d6;
-      --shadow: 0 12px 30px rgba(36, 50, 74, 0.08);
-      --radius: 20px;
-      --max: 1180px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Castle & Cubs - Fun Learning for Kids</title>
+<style>
+  body {
+    margin:0;
+    font-family:'Comic Sans MS', 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg,#fff7e6,#e6f7ff);
+    color:#333;
+  }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, #fffdf8 0%, #f9fbff 100%);
-      line-height: 1.6;
-    }
+  header {
+    background: linear-gradient(90deg,#ff9a9e,#fad0c4,#a18cd1);
+    padding:40px 20px;
+    text-align:center;
+    color:white;
+    border-bottom-left-radius:30px;
+    border-bottom-right-radius:30px;
+  }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+  h1 { font-size:42px; margin:0; }
+  h2 { color:#ff7a00; }
 
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-    }
+  .container {
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+    padding:30px 0;
+  }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: rgba(255, 253, 248, 0.92);
-      border-bottom: 1px solid rgba(233, 228, 216, 0.9);
-    }
+  .hero p {
+    font-size:18px;
+    margin-top:10px;
+  }
 
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 16px 0;
-    }
+  .btn {
+    display:inline-block;
+    padding:12px 25px;
+    margin-top:20px;
+    background:#ff7a00;
+    color:white;
+    border-radius:25px;
+    text-decoration:none;
+    font-weight:bold;
+  }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      font-size: 1.1rem;
-    }
+  .section {
+    background:white;
+    margin:20px 0;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.05);
+  }
 
-    .brand-mark {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #ffb86b, #ff8b7b 55%, #5b7cfa);
-      color: white;
-      box-shadow: var(--shadow);
-      font-weight: bold;
-      font-size: 0.92rem;
-    }
+  .cards {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+  }
 
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+  .card {
+    background:#f0f9ff;
+    padding:20px;
+    border-radius:18px;
+    text-align:center;
+    transition:0.3s;
+  }
 
-    .nav-actions {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
+  .card:hover {
+    transform:translateY(-5px);
+  }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-weight: 700;
-      transition: 0.2s ease;
-      border: 1px solid transparent;
-      cursor: pointer;
-    }
+  .emoji {
+    font-size:40px;
+  }
 
-    .btn-primary {
-      background: var(--brand);
-      color: white;
-      box-shadow: var(--shadow);
-    }
+  .youtube {
+    background:linear-gradient(90deg,#ff758c,#ff7eb3);
+    color:white;
+    text-align:center;
+    padding:30px;
+    border-radius:20px;
+  }
 
-    .btn-primary:hover { background: var(--brand-dark); }
-
-    .btn-secondary {
-      background: white;
-      color: var(--text);
-      border-color: var(--line);
-    }
-
-    .btn-secondary:hover { background: #fffaf0; }
-
-    .hero {
-      padding: 74px 0 50px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 34px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      background: var(--accent);
-      color: #8a5a00;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: clamp(2.3rem, 5vw, 4.2rem);
-      line-height: 1.08;
-      margin: 0 0 18px;
-      letter-spacing: -0.03em;
-    }
-
-    .hero p {
-      font-size: 1.08rem;
-      color: var(--muted);
-      margin: 0 0 28px;
-      max-width: 60ch;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 26px;
-    }
-
-    .hero-points {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .hero-card {
-      background: linear-gradient(160deg, #ffffff, #f7faff);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .learning-board {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 12px 32px rgba(36, 50, 74, 0.1);
-    }
-
-    .learning-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--line);
-      background: #fff8eb;
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-
-    .learning-body {
-      padding: 20px;
-      display: grid;
-      gap: 16px;
-    }
-
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .mini-card {
-      border-radius: 16px;
-      padding: 16px;
-      border: 1px solid var(--line);
-    }
-
-    .mini-card strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 1rem;
-    }
-
-    .mini-card:nth-child(1) { background: var(--accent-soft); }
-    .mini-card:nth-child(2) { background: var(--mint); }
-    .mini-card:nth-child(3) { background: #fff7e6; }
-    .mini-card:nth-child(4) { background: var(--peach); }
-
-    section {
-      padding: 36px 0;
-    }
-
-    .section-head {
-      max-width: 760px;
-      margin-bottom: 26px;
-    }
-
-    .section-head h2 {
-      margin: 0 0 10px;
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      line-height: 1.1;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.02rem;
-    }
-
-    .grid-3,
-    .grid-4,
-    .footer-grid,
-    .audience-grid,
-    .steps-grid {
-      display: grid;
-      gap: 22px;
-    }
-
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-4 { grid-template-columns: repeat(4, 1fr); }
-    .audience-grid { grid-template-columns: repeat(3, 1fr); }
-    .steps-grid { grid-template-columns: repeat(3, 1fr); }
-    .footer-grid { grid-template-columns: 1.2fr 0.8fr 0.8fr 1fr; }
-
-    .card,
-    .feature,
-    .audience,
-    .step,
-    .contact-card,
-    .highlight {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: var(--accent-soft);
-      color: var(--brand-dark);
-      font-size: 1.2rem;
-      margin-bottom: 16px;
-      font-weight: 700;
-    }
-
-    .card h3,
-    .feature h3,
-    .audience h3,
-    .step h3,
-    .contact-card h3,
-    .highlight h3 {
-      margin: 0 0 8px;
-      font-size: 1.18rem;
-    }
-
-    .card p,
-    .feature p,
-    .audience p,
-    .step p,
-    .contact-card p,
-    .highlight p,
-    .list li,
-    .footer-copy,
-    .footer-links a,
-    .footer-brand p {
-      color: var(--muted);
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: 0.98fr 1.02fr;
-      gap: 28px;
-      align-items: stretch;
-    }
-
-    .list {
-      margin: 18px 0 0;
-      padding-left: 18px;
-    }
-
-    .list li { margin-bottom: 10px; }
-
-    .youtube-section {
-      background: linear-gradient(135deg, #fffaf0, #f4f8ff);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .badge {
-      display: inline-block;
-      background: var(--accent);
-      color: #8a5a00;
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    .cta {
-      padding: 28px;
-      border-radius: 28px;
-      background: linear-gradient(135deg, #5b7cfa, #7a5cff);
-      color: white;
-      box-shadow: var(--shadow);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .cta h2 {
-      margin: 0 0 10px;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-    }
-
-    .cta p {
-      margin: 0;
-      color: rgba(255,255,255,0.88);
-      max-width: 60ch;
-    }
-
-    .contact {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 22px;
-    }
-
-    form {
-      display: grid;
-      gap: 14px;
-    }
-
-    .input-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 14px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      font: inherit;
-      background: white;
-    }
-
-    textarea {
-      min-height: 140px;
-      resize: vertical;
-    }
-
-    footer {
-      padding: 42px 0 24px;
-      margin-top: 24px;
-      border-top: 1px solid var(--line);
-      background: #fff;
-    }
-
-    .footer-links {
-      display: grid;
-      gap: 10px;
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      padding-top: 26px;
-      margin-top: 26px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .split,
-      .grid-3,
-      .grid-4,
-      .audience-grid,
-      .steps-grid,
-      .contact,
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .youtube-section,
-      .cta {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        display: none;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero { padding-top: 48px; }
-      .nav-actions .btn-secondary { display: none; }
-      .mini-grid,
-      .input-row,
-      .footer-bottom {
-        grid-template-columns: 1fr;
-        flex-direction: column;
-      }
-      h1 { font-size: 2.2rem; }
-    }
-  </style>
+  footer {
+    text-align:center;
+    padding:20px;
+    font-size:14px;
+    color:#777;
+  }
+</style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="container nav">
-      <a class="brand" href="#home">
-        <span class="brand-mark">C&C</span>
-        <span>Castle & Cubs</span>
-      </a>
 
-      <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#content">Content</a>
-        <a href="#audience">Who It Helps</a>
-        <a href="#youtube">YouTube</a>
-        <a href="#contact">Contact</a>
-      </nav>
+<header>
+  <h1>🏰 Castle & Cubs 🐻</h1>
+  <p>Fun Learning • Happy Kids • Bright Future</p>
+</header>
 
-      <div class="nav-actions">
-        <a class="btn btn-secondary" href="#about">Explore</a>
-        <a class="btn btn-primary" href="https://www.youtube.com/@castleandcubs" target="_blank" rel="noopener noreferrer">Visit Channel</a>
+<div class="container">
+
+  <div class="section hero">
+    <h2>Welcome to Fun Learning!</h2>
+    <p>We make learning simple, fun, and exciting for kids through creative videos and activities.</p>
+    <a class="btn" href="https://www.youtube.com/@castleandcubs" target="_blank">▶ Watch Videos</a>
+  </div>
+
+  <div class="section">
+    <h2>🎯 What Kids Will Learn</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="emoji">🔤</div>
+        <h3>Basic Skills</h3>
+        <p>Learn letters, numbers, and everyday concepts easily.</p>
+      </div>
+      <div class="card">
+        <div class="emoji">🎨</div>
+        <h3>Creativity</h3>
+        <p>Fun activities that boost imagination.</p>
+      </div>
+      <div class="card">
+        <div class="emoji">🧠</div>
+        <h3>Thinking Skills</h3>
+        <p>Improve problem-solving and observation.</p>
+      </div>
+      <div class="card">
+        <div class="emoji">🌱</div>
+        <h3>Growth</h3>
+        <p>Build confidence and independence.</p>
       </div>
     </div>
   </div>
 
-  <main id="home">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Fun, simple, and meaningful learning for children</span>
-          <h1>Helping kids learn, explore, and grow through engaging educational videos.</h1>
-          <p>
-            Castle & Cubs is dedicated to children’s education, learning, and development through easy-to-understand content that makes learning enjoyable for kids and practical for parents, teachers, and caregivers.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://www.youtube.com/@castleandcubs" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
-            <a class="btn btn-secondary" href="#about">Learn More</a>
-          </div>
-
-          <div class="hero-points">
-            <span>✔ Montessori-inspired ideas</span>
-            <span>✔ Early childhood learning</span>
-            <span>✔ Parent and teacher friendly</span>
-            <span>✔ Practical activities</span>
-          </div>
-        </div>
-
-        <div class="hero-card">
-          <div class="learning-board">
-            <div class="learning-top">
-              <span>Learning Focus</span>
-              <span class="badge">Kids Education</span>
-            </div>
-            <div class="learning-body">
-              <div>
-                <h3 style="margin: 0 0 8px; font-size: 1.5rem;">Simple learning experiences that build curiosity and confidence.</h3>
-                <p style="margin: 0; color: var(--muted);">Created to support children through practical, creative, and hands-on ways of learning.</p>
-              </div>
-              <div class="mini-grid">
-                <div class="mini-card">
-                  <strong>Basic Skills</strong>
-                  <span>Simple concepts explained in child-friendly ways.</span>
-                </div>
-                <div class="mini-card">
-                  <strong>Creativity</strong>
-                  <span>Activities that encourage imagination and expression.</span>
-                </div>
-                <div class="mini-card">
-                  <strong>Independence</strong>
-                  <span>Montessori-inspired learning that supports self-confidence.</span>
-                </div>
-                <div class="mini-card">
-                  <strong>Growth</strong>
-                  <span>Meaningful lessons for everyday learning and development.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="section">
+    <h2>👨‍👩‍👧 Who is this for?</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="emoji">👨‍👩‍👧</div>
+        <h3>Parents</h3>
+        <p>Help your child learn at home.</p>
       </div>
-    </section>
-
-    <section id="about">
-      <div class="container split">
-        <div class="highlight">
-          <span class="badge">About the Channel</span>
-          <h3 style="margin-top: 14px; font-size: 1.8rem;">A learning space designed for children and the adults who guide them.</h3>
-          <p>
-            Castle & Cubs shares educational content that makes learning fun, interactive, and easy to understand. The focus is on helping children grow through practical lessons, engaging activities, and creative teaching methods that support everyday development.
-          </p>
-          <ul class="list">
-            <li>Educational videos designed to be engaging and easy to follow</li>
-            <li>Montessori-based ideas that encourage hands-on learning</li>
-            <li>Simple resources that parents and educators can apply at home or in class</li>
-          </ul>
-        </div>
-
-        <div class="grid-3">
-          <article class="feature">
-            <div class="icon">A</div>
-            <h3>Active Learning</h3>
-            <p>Children learn better when they participate, explore, and interact with what they see and do.</p>
-          </article>
-          <article class="feature">
-            <div class="icon">M</div>
-            <h3>Montessori Approach</h3>
-            <p>Inspired by methods that build independence, curiosity, focus, and confidence in young learners.</p>
-          </article>
-          <article class="feature">
-            <div class="icon">C</div>
-            <h3>Child-Friendly Content</h3>
-            <p>Lessons are kept simple, meaningful, and enjoyable so children can connect with them naturally.</p>
-          </article>
-        </div>
+      <div class="card">
+        <div class="emoji">👩‍🏫</div>
+        <h3>Teachers</h3>
+        <p>Make teaching fun and engaging.</p>
       </div>
-    </section>
-
-    <section id="content">
-      <div class="container">
-        <div class="section-head">
-          <h2>What you will find on Castle & Cubs</h2>
-          <p>Content created to support early learning in ways that feel practical, playful, and helpful.</p>
-        </div>
-
-        <div class="grid-4">
-          <article class="card">
-            <div class="icon">1</div>
-            <h3>Educational Videos</h3>
-            <p>Clear and engaging videos that introduce learning concepts in a simple and enjoyable way for children.</p>
-          </article>
-          <article class="card">
-            <div class="icon">2</div>
-            <h3>Practical Activities</h3>
-            <p>Easy ideas and activities that can be used by parents, teachers, and caregivers in everyday routines.</p>
-          </article>
-          <article class="card">
-            <div class="icon">3</div>
-            <h3>Basic Skill Building</h3>
-            <p>Support for early learning areas such as thinking skills, observation, habits, and everyday understanding.</p>
-          </article>
-          <article class="card">
-            <div class="icon">4</div>
-            <h3>Creative Teaching Methods</h3>
-            <p>Simple approaches that make lessons more interactive, meaningful, and fun for young learners.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="audience">
-      <div class="container">
-        <div class="section-head">
-          <h2>Who this channel is for</h2>
-          <p>Castle & Cubs is built for the adults who want to support children’s learning in a thoughtful and joyful way.</p>
-        </div>
-
-        <div class="audience-grid">
-          <article class="audience">
-            <div class="icon">P</div>
-            <h3>Parents</h3>
-            <p>Find simple ideas, learning inspiration, and practical support to help your child learn at home.</p>
-          </article>
-          <article class="audience">
-            <div class="icon">T</div>
-            <h3>Teachers</h3>
-            <p>Use engaging activities and child-friendly approaches to make lessons more interactive and effective.</p>
-          </article>
-          <article class="audience">
-            <div class="icon">C</div>
-            <h3>Caregivers</h3>
-            <p>Access easy-to-follow resources that encourage children’s growth, curiosity, and confidence.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <div class="section-head">
-          <h2>How Castle & Cubs supports early childhood development</h2>
-          <p>The content is designed to create enjoyable learning moments while supporting important developmental foundations.</p>
-        </div>
-
-        <div class="steps-grid">
-          <article class="step">
-            <div class="icon">01</div>
-            <h3>Encourages Curiosity</h3>
-            <p>Children are invited to ask questions, explore ideas, and stay interested in the world around them.</p>
-          </article>
-          <article class="step">
-            <div class="icon">02</div>
-            <h3>Builds Independence</h3>
-            <p>Montessori-inspired methods help children try, discover, and learn with greater confidence.</p>
-          </article>
-          <article class="step">
-            <div class="icon">03</div>
-            <h3>Makes Learning Meaningful</h3>
-            <p>Simple lessons and activities connect learning with everyday life so children can understand and remember better.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="youtube">
-      <div class="container">
-        <div class="youtube-section">
-          <div>
-            <span class="badge">YouTube Channel</span>
-            <h2 style="margin: 12px 0 10px; font-size: clamp(1.8rem, 3vw, 2.5rem);">Watch, learn, and grow together with Castle & Cubs.</h2>
-            <p style="margin: 0; color: var(--muted); max-width: 62ch;">
-              Explore the YouTube channel for educational videos, Montessori-inspired learning ideas, and practical content that supports children’s development in a fun and meaningful way.
-            </p>
-          </div>
-          <a class="btn btn-primary" href="https://www.youtube.com/@castleandcubs" target="_blank" rel="noopener noreferrer">Open YouTube Channel</a>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <div class="cta">
-          <div>
-            <h2>Let’s make learning joyful and meaningful for every child.</h2>
-            <p>Follow Castle & Cubs for educational content that supports learning, development, creativity, and confidence in young children.</p>
-          </div>
-          <a class="btn btn-secondary" href="https://www.youtube.com/@castleandcubs" target="_blank" rel="noopener noreferrer" style="background:white; color: var(--brand-dark); border: none;">Subscribe on YouTube</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container contact">
-        <div class="contact-card">
-          <span class="badge">Connect</span>
-          <h3 style="margin-top: 14px; font-size: 1.8rem;">Stay connected with Castle & Cubs</h3>
-          <p>This space can be used for collaborations, educator connections, parent queries, or future contact details.</p>
-          <ul class="list">
-            <li>YouTube: @castleandcubs</li>
-            <li>Website: castleandcubs.com</li>
-            <li>Learning focus: kids education and development</li>
-          </ul>
-        </div>
-
-        <div class="contact-card">
-          <h3>Send a message</h3>
-          <p>You can keep this form as a visual section for now, and later connect it to email or a real form handler.</p>
-          <form>
-            <div class="input-row">
-              <input type="text" placeholder="Your name" />
-              <input type="email" placeholder="Email address" />
-            </div>
-            <div class="input-row">
-              <input type="text" placeholder="I am a parent / teacher / caregiver" />
-              <input type="text" placeholder="Subject" />
-            </div>
-            <textarea placeholder="Write your message here"></textarea>
-            <button class="btn btn-primary" type="button">Send Message</button>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="brand" style="margin-bottom: 12px;">
-            <span class="brand-mark">C&C</span>
-            <span>Castle & Cubs</span>
-          </div>
-          <p>Educational content for children, inspired by curiosity, creativity, and meaningful early learning experiences.</p>
-        </div>
-
-        <div>
-          <h4>Explore</h4>
-          <div class="footer-links">
-            <a href="#about">About</a>
-            <a href="#content">Content</a>
-            <a href="#audience">Who It Helps</a>
-          </div>
-        </div>
-
-        <div>
-          <h4>Channel</h4>
-          <div class="footer-links">
-            <a href="#youtube">YouTube</a>
-            <a href="https://www.youtube.com/@castleandcubs" target="_blank" rel="noopener noreferrer">Visit Channel</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </div>
-
-        <div>
-          <h4>Castle & Cubs</h4>
-          <div class="footer-links">
-            <a href="https://www.youtube.com/@castleandcubs" target="_blank" rel="noopener noreferrer">@castleandcubs</a>
-            <a href="https://castleandcubs.com">castleandcubs.com</a>
-            <a href="#home">Back to top</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <span>© 2026 Castle & Cubs. All rights reserved.</span>
-        <span>Learn, explore, and grow together.</span>
+      <div class="card">
+        <div class="emoji">🧸</div>
+        <h3>Caregivers</h3>
+        <p>Support children’s growth easily.</p>
       </div>
     </div>
-  </footer>
+  </div>
+
+  <div class="section">
+    <h2>✨ Our Approach</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="emoji">🤲</div>
+        <h3>Hands-on Learning</h3>
+      </div>
+      <div class="card">
+        <div class="emoji">🎯</div>
+        <h3>Simple Concepts</h3>
+      </div>
+      <div class="card">
+        <div class="emoji">💡</div>
+        <h3>Creative Ideas</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="youtube">
+    <h2>🎥 Join Our YouTube Channel</h2>
+    <p>Let’s learn, explore, and grow together!</p>
+    <a class="btn" href="https://www.youtube.com/@castleandcubs" target="_blank">Subscribe Now</a>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Castle & Cubs • Made with ❤️ for Kids
+</footer>
+
 </body>
 </html>
