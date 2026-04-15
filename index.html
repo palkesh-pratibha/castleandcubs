@@ -2,64 +2,761 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Castle & Cubs</title>
+  <meta name="description" content="Castle & Cubs offers thoughtful products and services for modern families, designed with care, trust, and simplicity." />
   <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --line: #e2e8f0;
+      --brand: #1d4ed8;
+      --brand-dark: #1e3a8a;
+      --accent: #dbeafe;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
     }
-    header {
-      background: #2c3e50;
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(248, 250, 252, 0.9);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
       color: white;
-      padding: 40px 20px;
+      box-shadow: var(--shadow);
+      font-weight: bold;
     }
-    h1 {
-      margin: 0;
-      font-size: 36px;
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.95rem;
     }
-    p {
-      color: #555;
-      font-size: 18px;
+
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
     }
-    .section {
-      padding: 40px 20px;
-    }
+
     .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      background: #3498db;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
     }
-    footer {
-      background: #2c3e50;
+
+    .btn-primary {
+      background: var(--brand);
       color: white;
-      padding: 20px;
-      margin-top: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover { background: var(--brand-dark); }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .btn-secondary:hover { background: #f8fafc; }
+
+    .hero {
+      padding: 72px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--brand-dark);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4.25rem);
+      line-height: 1.08;
+      margin: 0 0 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      color: var(--muted);
+      margin: 0 0 28px;
+      max-width: 58ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(160deg, #ffffff, #eff6ff);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .mockup {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.1);
+    }
+
+    .mockup-top {
+      display: flex;
+      gap: 8px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #f8fafc;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #cbd5e1;
+    }
+
+    .mockup-body {
+      padding: 22px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 4px;
+    }
+
+    .card-grid,
+    .feature-grid,
+    .testimonial-grid,
+    .footer-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .card-grid { grid-template-columns: repeat(3, 1fr); }
+    .feature-grid { grid-template-columns: repeat(3, 1fr); }
+    .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-grid { grid-template-columns: 1.2fr 0.8fr 0.8fr 1fr; }
+
+    section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 26px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.1;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .card,
+    .feature,
+    .testimonial,
+    .price,
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: var(--brand-dark);
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+
+    .card h3,
+    .feature h3,
+    .price h3,
+    .contact-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+    }
+
+    .card p,
+    .feature p,
+    .testimonial p,
+    .price p,
+    .contact-card p,
+    .footer-copy,
+    .list li {
+      color: var(--muted);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .list {
+      margin: 18px 0 0;
+      padding-left: 18px;
+    }
+
+    .list li { margin-bottom: 10px; }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .price.featured {
+      border-color: var(--brand);
+      transform: translateY(-4px);
+    }
+
+    .price-tag {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 12px 0 16px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--brand-dark);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .cta {
+      padding: 26px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, var(--brand-dark), var(--brand));
+      color: white;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cta h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+    }
+
+    .cta p {
+      margin: 0;
+      color: rgba(255,255,255,0.86);
+      max-width: 60ch;
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 22px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      font: inherit;
+      background: white;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 42px 0 24px;
+      margin-top: 24px;
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .footer-brand p,
+    .footer-links a,
+    .footer-copy {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding-top: 26px;
+      margin-top: 26px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .split,
+      .pricing,
+      .contact,
+      .footer-grid,
+      .card-grid,
+      .feature-grid,
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding-top: 48px; }
+      .nav-actions .btn-secondary { display: none; }
+      .input-row,
+      .stat-row,
+      .footer-bottom {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+      }
+      h1 { font-size: 2.2rem; }
     }
   </style>
 </head>
 <body>
+  <div class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#home">
+        <span class="brand-mark">C&C</span>
+        <span>Castle & Cubs</span>
+      </a>
 
-<header>
-  <h1>Castle & Cubs</h1>
-  <p>Building something amazing for you</p>
-</header>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#features">Why Us</a>
+        <a href="#pricing">Plans</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-<div class="section">
-  <h2>Welcome</h2>
-  <p>Our website is currently under development. Stay tuned for something exciting!</p>
-  <a href="#" class="btn">Contact Us</a>
-</div>
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="#about">Learn More</a>
+        <a class="btn btn-primary" href="#contact">Book a Call</a>
+      </div>
+    </div>
+  </div>
 
-<footer>
-  <p>© 2026 Castle & Cubs. All rights reserved.</p>
-</footer>
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Trusted solutions for modern family-focused businesses</span>
+          <h1>Build a stronger brand with a landing page that looks credible, modern, and ready to sell.</h1>
+          <p>
+            Castle & Cubs helps businesses present their value clearly, build trust faster, and turn visitors into enquiries with a clean, conversion-focused online presence.
+          </p>
 
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Get Started</a>
+            <a class="btn btn-secondary" href="#services">View Services</a>
+          </div>
+
+          <div class="hero-points">
+            <span>✔ Professional design</span>
+            <span>✔ Mobile friendly</span>
+            <span>✔ Fast loading</span>
+            <span>✔ Easy to maintain</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="mockup">
+            <div class="mockup-top">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="mockup-body">
+              <div>
+                <span class="badge">Growth Snapshot</span>
+                <h3 style="margin: 14px 0 8px; font-size: 1.5rem;">A polished website that works like your best first impression.</h3>
+                <p style="margin: 0; color: var(--muted);">Designed to communicate trust, clarity, and value in seconds.</p>
+              </div>
+              <div class="stat-row">
+                <div class="stat"><strong>24/7</strong><span>Online presence</span></div>
+                <div class="stat"><strong>Fast</strong><span>Simple delivery</span></div>
+                <div class="stat"><strong>Clean</strong><span>Business-ready design</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>What we offer</h2>
+          <p>Everything you need for a simple, elegant, and trustworthy business presence online.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <div class="icon">◆</div>
+            <h3>Landing Page Design</h3>
+            <p>Single-page business websites built to introduce your brand clearly and guide visitors toward action.</p>
+          </article>
+          <article class="card">
+            <div class="icon">◎</div>
+            <h3>Content Structuring</h3>
+            <p>Clear messaging, value proposition, trust sections, and calls to action that make your business easy to understand.</p>
+          </article>
+          <article class="card">
+            <div class="icon">✦</div>
+            <h3>Launch Support</h3>
+            <p>Domain connection, basic deployment, and a setup that is lightweight, easy to edit, and fast to publish.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container split">
+        <div class="contact-card">
+          <span class="badge">About Castle & Cubs</span>
+          <h3 style="margin-top: 14px; font-size: 1.8rem;">Built around trust, simplicity, and thoughtful presentation.</h3>
+          <p>
+            We believe a business website should not feel confusing or overloaded. It should tell your story quickly, explain what you do, and help visitors feel confident about contacting you.
+          </p>
+          <ul class="list">
+            <li>Clear layout that works on desktop and mobile</li>
+            <li>Focused messaging that supports business credibility</li>
+            <li>Flexible structure that can grow with your brand</li>
+          </ul>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="icon">1</div>
+            <h3>Clarity first</h3>
+            <p>Your audience understands who you are, what you offer, and why they should trust you.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">2</div>
+            <h3>Conversion focused</h3>
+            <p>Calls to action are placed carefully so visitors know exactly what step to take next.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">3</div>
+            <h3>Easy upkeep</h3>
+            <p>The page is simple enough to maintain without needing a heavy platform or complex setup.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-head">
+          <h2>Why businesses choose a lightweight landing page</h2>
+          <p>A fast, focused landing page is often the easiest way to launch professionally without overbuilding too early.</p>
+        </div>
+
+        <div class="testimonial-grid">
+          <article class="testimonial">
+            <h3>Fast to launch</h3>
+            <p>Go live quickly with a page that already includes the essential business sections visitors expect.</p>
+          </article>
+          <article class="testimonial">
+            <h3>Easy to trust</h3>
+            <p>Modern structure, consistent styling, and clear messaging help your business feel more established.</p>
+          </article>
+          <article class="testimonial">
+            <h3>Simple to grow</h3>
+            <p>Start with one strong page now and expand later into additional pages, services, or lead capture flows.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <h2>Simple plans</h2>
+          <p>Use these as placeholder business plans now, or replace them with your actual service packages later.</p>
+        </div>
+
+        <div class="pricing">
+          <article class="price">
+            <span class="badge">Starter</span>
+            <h3>Basic Presence</h3>
+            <div class="price-tag">$99</div>
+            <p>Ideal for getting online with a clean and professional first version.</p>
+            <ul class="list">
+              <li>Single landing page</li>
+              <li>Core business sections</li>
+              <li>Mobile responsive design</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contact">Choose Plan</a>
+          </article>
+
+          <article class="price featured">
+            <span class="badge">Popular</span>
+            <h3>Growth Plan</h3>
+            <div class="price-tag">$199</div>
+            <p>Best for brands that want stronger positioning and more polished structure.</p>
+            <ul class="list">
+              <li>Enhanced design sections</li>
+              <li>Trust and testimonial areas</li>
+              <li>Content refinement support</li>
+            </ul>
+            <a class="btn btn-primary" href="#contact">Choose Plan</a>
+          </article>
+
+          <article class="price">
+            <span class="badge">Advanced</span>
+            <h3>Brand Plus</h3>
+            <div class="price-tag">$299</div>
+            <p>For businesses preparing for campaigns, launches, or stronger lead generation.</p>
+            <ul class="list">
+              <li>Custom call-to-action blocks</li>
+              <li>Expanded page sections</li>
+              <li>Launch-ready presentation</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contact">Choose Plan</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta">
+          <div>
+            <h2>Ready to present your business better?</h2>
+            <p>Launch a professional landing page that makes your brand look clear, credible, and easy to contact.</p>
+          </div>
+          <a class="btn btn-secondary" href="#contact" style="background:white; color: var(--brand-dark); border: none;">Schedule a Discussion</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact">
+        <div class="contact-card">
+          <span class="badge">Contact</span>
+          <h3 style="margin-top: 14px; font-size: 1.8rem;">Let’s talk about your business</h3>
+          <p>Use this section for enquiries, consultations, demos, or partnership discussions.</p>
+          <ul class="list">
+            <li>Email: hello@castleandcubs.com</li>
+            <li>Phone: +1 000 000 0000</li>
+            <li>Hours: Mon–Fri, 9:00 AM–6:00 PM</li>
+          </ul>
+        </div>
+
+        <div class="contact-card">
+          <h3>Send an enquiry</h3>
+          <p>Replace this simple form with a real form handler later, or connect it to your preferred contact workflow.</p>
+          <form>
+            <div class="input-row">
+              <input type="text" placeholder="Your name" />
+              <input type="email" placeholder="Email address" />
+            </div>
+            <div class="input-row">
+              <input type="text" placeholder="Company" />
+              <input type="text" placeholder="Phone number" />
+            </div>
+            <textarea placeholder="Tell us about your requirement"></textarea>
+            <button class="btn btn-primary" type="button">Submit Enquiry</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand" style="margin-bottom: 12px;">
+            <span class="brand-mark">C&C</span>
+            <span>Castle & Cubs</span>
+          </div>
+          <p>A clean and modern business presence designed to help your brand look trustworthy from the very first click.</p>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#pricing">Plans</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Support</h4>
+          <div class="footer-links">
+            <a href="#contact">Contact</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Get in touch</h4>
+          <div class="footer-links">
+            <a href="mailto:hello@castleandcubs.com">hello@castleandcubs.com</a>
+            <a href="tel:+10000000000">+1 000 000 0000</a>
+            <a href="#contact">Book a consultation</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Castle & Cubs. All rights reserved.</span>
+        <span>Built for speed, clarity, and trust.</span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
